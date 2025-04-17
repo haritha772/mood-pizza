@@ -1,0 +1,62 @@
+import React from "react";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Pizza } from "lucide-react";
+
+interface MoodPizzaResultProps {
+  pizza: {
+    toppings: string[];
+    sauce: string;
+    cheese: string;
+    description: string;
+  };
+}
+
+export function MoodPizzaResult({ pizza }: MoodPizzaResultProps) {
+  return (
+    <Card className="overflow-hidden animate-fade-in">
+      <CardHeader className="bg-gradient-to-r from-mind-light to-mind-blue p-6">
+        <div className="flex justify-between items-center">
+          <div>
+            <CardTitle className="text-2xl font-display">Your Mood Pizza</CardTitle>
+            <CardDescription className="text-foreground/80 mt-1">
+              Custom baked just for your emotional state
+            </CardDescription>
+          </div>
+          <Pizza className="h-10 w-10 text-mind-accent animate-pulse-gentle" />
+        </div>
+      </CardHeader>
+      
+      <CardContent className="p-6">
+        <div className="grid gap-6">
+          <div>
+            <h3 className="font-semibold text-lg mb-2">Base</h3>
+            <div className="flex flex-wrap gap-2 mb-4">
+              <Badge variant="outline" className="bg-orange-100 text-orange-800 hover:bg-orange-200">
+                {pizza.sauce} Sauce
+              </Badge>
+              <Badge variant="outline" className="bg-yellow-100 text-yellow-800 hover:bg-yellow-200">
+                {pizza.cheese}
+              </Badge>
+            </div>
+          </div>
+          
+          <div>
+            <h3 className="font-semibold text-lg mb-2">Toppings</h3>
+            <div className="flex flex-wrap gap-2">
+              {pizza.toppings.map((topping, index) => (
+                <Badge key={index} className="bg-mind/10 text-mind-dark hover:bg-mind/20">
+                  {topping}
+                </Badge>
+              ))}
+            </div>
+          </div>
+          
+          <div className="mt-4 pt-4 border-t">
+            <p className="italic text-muted-foreground">{pizza.description}</p>
+          </div>
+        </div>
+      </CardContent>
+    </Card>
+  );
+}

@@ -1,0 +1,22 @@
+import { cn } from "@/lib/utils";
+
+export default function Header() {
+  return (
+    <header className="w-full py-6 px-4 flex items-center justify-center bg-gradient-to-r from-purple-100 via-violet-200 to-purple-100 shadow-sm sticky top-0 z-10">
+      <div className="container flex items-center justify-center">
+        <div className="flex flex-col items-center">
+          <h1 className="text-4xl md:text-5xl font-bold text-primary text-center">
+            <span className="animate-pulse inline-block mr-2">🍕</span>
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">
+              Mood Pizza
+            </span>
+            <span className="animate-pulse inline-block ml-2">🍕</span>
+          </h1>
+          <p className="mt-2 text-lg text-center text-gray-700">
+            We bake your feelings into the perfect pizza
+          </p>
+        </div>
+      </div>
+    </header>
+  );
+}

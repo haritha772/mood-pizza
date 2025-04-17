@@ -1,0 +1,21 @@
+export interface Mood {
+  id: string;
+  name: string;
+  emoji: string;
+  description: string;
+  color: string;
+}
+
+export interface PizzaIngredient {
+  name: string;
+  description: string;
+  image?: string;
+}
+
+export interface MoodPizza {
+  name: string;
+  description: string;
+  baseColor: string;
+  ingredients: PizzaIngredient[];
+  image?: string;
+}

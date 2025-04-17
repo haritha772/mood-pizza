@@ -1,0 +1,63 @@
+
+import { useState } from "react";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import MoodSelector from "@/components/MoodSelector";
+import PizzaDisplay from "@/components/PizzaDisplay";
+import IngredientsExplainer from "@/components/IngredientsExplainer";
+import { Mood } from "@/types";
+import { getDefaultMood } from "@/data/moods";
+
+const Index = () => {
+  const [selectedMood, setSelectedMood] = useState<Mood>(getDefaultMood());
+
+  const handleMoodSelect = (mood: Mood) => {
+    setSelectedMood(mood);
+  };
+
+  return (
+    <div className="min-h-screen flex flex-col bg-gradient-to-b from-white via-purple-50 to-gray-50">
+      <Header />
+      
+      <main className="flex-grow container mx-auto px-4 py-8">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl font-bold text-gray-800">
+              The Pizza Alchemy Experience
+            </h2>
+            <p className="mt-2 text-gray-600">
+              Select your mood and we'll craft the perfect pizza to match your emotional state
+            </p>
+          </div>
+          
+          <MoodSelector 
+            selectedMood={selectedMood} 
+            onMoodSelect={handleMoodSelect} 
+          />
+          
+          <div className="my-8 text-center animate-fade-in">
+            <h3 className="text-xl font-medium">
+              Our recommendation for when you're feeling 
+              <span 
+                className="font-bold mx-1"
+                style={{ color: selectedMood.color !== "#FFFFFF" ? selectedMood.id : "inherit" }}
+              >
+                {selectedMood.name.toLowerCase()}
+              </span>
+              {selectedMood.emoji}
+            </h3>
+            <p className="text-gray-600 mt-1">{selectedMood.description}</p>
+          </div>
+          
+          <PizzaDisplay mood={selectedMood} />
+          
+          <IngredientsExplainer moodId={selectedMood.id} />
+        </div>
+      </main>
+      
+      <Footer />
+    </div>
+  );
+};
+
+export default Index;
